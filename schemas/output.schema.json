@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/red-flag-detector/output.schema.json",
+  "title": "RedFlagDetectorOutput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "verdict",
+    "risk_level",
+    "label",
+    "confidence_score",
+    "red_flags",
+    "green_flags",
+    "core_pattern",
+    "possible_motivation",
+    "user_risk",
+    "advice",
+    "boundary_script",
+    "observation_period",
+    "shareable_report"
+  ],
+  "properties": {
+    "verdict": { "type": "string" },
+    "risk_level": { "type": "string", "enum": ["低", "中", "高", "极高"] },
+    "label": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["嘴甜行动少型", "养鱼型", "回避确认型", "控制型", "情绪勒索型", "隐瞒关系型", "冷暴力型", "正常但沟通差型"]
+      }
+    },
+    "confidence_score": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "red_flags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "evidence", "severity"],
+        "properties": {
+          "type": { "type": "string" },
+          "evidence": { "type": "string" },
+          "severity": { "type": "integer", "minimum": 1, "maximum": 5 }
+        }
+      }
+    },
+    "green_flags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "core_pattern": { "type": "string" },
+    "possible_motivation": { "type": "string" },
+    "user_risk": { "type": "string" },
+    "advice": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "boundary_script": { "type": "string" },
+    "observation_period": { "type": "string" },
+    "shareable_report": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "short_summary", "dramatic_score", "sister_version"],
+      "properties": {
+        "title": { "type": "string" },
+        "short_summary": { "type": "string" },
+        "dramatic_score": { "type": "string" },
+        "sister_version": { "type": "string" }
+      }
+    }
+  }
+}
+

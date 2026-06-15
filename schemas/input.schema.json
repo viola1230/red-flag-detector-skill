@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/red-flag-detector/input.schema.json",
+  "title": "RedFlagDetectorInput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "relationship_stage",
+    "user_goal",
+    "evidence_type",
+    "raw_content",
+    "tone_preference",
+    "output_format"
+  ],
+  "properties": {
+    "relationship_stage": {
+      "type": "string",
+      "enum": ["刚认识", "暧昧期", "已确认关系", "分手后拉扯", "复合观察期"]
+    },
+    "user_goal": {
+      "type": "string",
+      "enum": ["判断是否靠谱", "判断是否被养鱼", "判断是否被 PUA", "判断是否值得继续", "生成可分享报告", "生成下一步话术"]
+    },
+    "evidence_type": {
+      "type": "string",
+      "enum": ["聊天记录", "事件描述", "约会复盘", "长期相处模式", "多段混合材料"]
+    },
+    "raw_content": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50000
+    },
+    "tone_preference": {
+      "type": "string",
+      "enum": ["犀利吐槽", "理性分析", "闺蜜口吻", "温柔提醒", "报告体"]
+    },
+    "output_format": {
+      "type": "string",
+      "enum": ["简短结论", "完整鉴定报告", "分享卡片", "后续应对策略", "聊天回复话术"]
+    }
+  }
+}
+
